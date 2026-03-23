@@ -1,0 +1,87 @@
+alias: First Stairs Presence Turn Light On Then Off
+description: ""
+triggers:
+  - type: occupied
+    device_id: {redacted}
+    entity_id: {redacted}
+    domain: binary_sensor
+    trigger: device
+  - type: occupied
+    device_id: {redacted}
+    entity_id: {redacted}
+    domain: binary_sensor
+    trigger: device
+conditions:
+  - condition: or
+    conditions:
+      - type: is_illuminance
+        condition: device
+        device_id: {redacted}
+        entity_id: {redacted}
+        domain: sensor
+        below: 60
+      - type: is_illuminance
+        condition: device
+        device_id: {redacted}
+        entity_id: {redacted}
+        domain: sensor
+        below: 60
+      - type: is_illuminance
+        condition: device
+        device_id: {redacted}
+        entity_id: {redacted}
+        domain: sensor
+        below: 60
+actions:
+  - choose:
+      - conditions:
+          - condition: time
+            after: "22:00:00"
+            before: "07:00:00"
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+              - sat
+              - sun
+        sequence:
+          - action: light.turn_on
+            metadata: {}
+            data:
+              brightness_pct: 75
+              transition: 5
+            target:
+              entity_id: light.first_stairs_light
+          - delay:
+              hours: 0
+              minutes: 2
+              seconds: 0
+              milliseconds: 0
+          - action: light.turn_off
+            metadata: {}
+            target:
+              entity_id: light.first_stairs_light
+            data:
+              transition: 2
+    default:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          transition: 2
+          brightness_pct: 85
+        target:
+          entity_id: light.first_stairs_light
+      - delay:
+          hours: 0
+          minutes: 2
+          seconds: 0
+          milliseconds: 0
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id: light.first_stairs_light
+        data:
+          transition: 2
+mode: single

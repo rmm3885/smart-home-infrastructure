@@ -1,6 +1,0 @@
-rest_command:
-    mac_sleep:
-        url: "http://redacted/sleep"
-        method: POST
-        headers:
-            Authorization: "Bearer redacted_token"

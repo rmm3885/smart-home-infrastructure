@@ -1,0 +1,7 @@
+# Example REST command used to trigger device actions via HTTP API
+rest_command:
+    mac_sleep:
+        url: "http://example.local/sleep"
+        method: POST
+        headers:
+            Authorization: "Bearer <redacted>"

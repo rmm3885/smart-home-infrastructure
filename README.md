@@ -1,4 +1,3 @@
-# smart-home-infrastructure
 # Smart Home Infrastructure System
 
 This project documents a distributed home automation system integrating IoT devices across Zigbee, Matter, and Wi-Fi using Home Assistant.
